@@ -148,7 +148,7 @@ desktop/       Masaüstüne özel
   DiskScreen.kt    disk seçme ekranı
 
 brand/         Logo dosyaları (SVG + PNG)
-store/         Mağaza ve duyuru metinleri
+docs/          Ekran görüntüleri
 ```
 
 Arayüz ve çeviriler tek kaynaktan gelir. Bir dili düzeltmek için

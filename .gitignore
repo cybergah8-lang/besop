@@ -22,3 +22,7 @@ dist/
 *.iws
 .DS_Store
 Thumbs.db
+
+# --- depoya girmeyen calisma dosyalari ---
+store/
+GITHUB-ADIMLARI.md
