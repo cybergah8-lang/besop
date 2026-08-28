@@ -1,0 +1,793 @@
+<title>Bêşop</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap">
+
+<style>
+/* ============================================================
+   Bêşop duyuru sayfası
+   Koyu tema esas — uygulamanın kendi kimliği koyu zeminli.
+   ============================================================ */
+
+:root {
+  /* KOYU (varsayılan) */
+  --ground:        #08080A;
+  --ground-raised: #121218;
+  --ground-sunken: #050506;
+  --ink:           #ECEAEE;
+  --ink-soft:      #A29FA9;
+  --ink-faint:     #6A6772;
+  --accent:        #FF4757;
+  --accent-dim:    #C4303D;
+  --ember:         #FFB020;
+  --rule:          #23232B;
+  --rule-soft:     #17171D;
+
+  --shell: 100%;
+  --measure: 34rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --ground:        #FBFAFB;
+    --ground-raised: #FFFFFF;
+    --ground-sunken: #F2F0F3;
+    --ink:           #15141A;
+    --ink-soft:      #56535E;
+    --ink-faint:     #8B8794;
+    --accent:        #D92D3A;
+    --accent-dim:    #A81F2A;
+    --ember:         #A66700;
+    --rule:          #E2DFE6;
+    --rule-soft:     #EEECF1;
+  }
+}
+
+:root[data-theme="light"] {
+  --ground:        #FBFAFB;
+  --ground-raised: #FFFFFF;
+  --ground-sunken: #F2F0F3;
+  --ink:           #15141A;
+  --ink-soft:      #56535E;
+  --ink-faint:     #8B8794;
+  --accent:        #D92D3A;
+  --accent-dim:    #A81F2A;
+  --ember:         #A66700;
+  --rule:          #E2DFE6;
+  --rule-soft:     #EEECF1;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, 46rem);
+  margin-inline: auto;
+}
+
+/* ---------------------------------------------------- tipografi */
+
+h1, h2, h3 {
+  font-family: Archivo, "Arial Narrow", system-ui, sans-serif;
+  text-wrap: balance;
+  margin: 0;
+}
+
+h2 {
+  font-size: clamp(1.55rem, 3.6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: -0.008em;
+}
+
+p { margin: 0; max-width: var(--measure); }
+
+.lede {
+  font-size: clamp(1.12rem, 2.4vw, 1.3rem);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.soft  { color: var(--ink-soft); }
+.faint { color: var(--ink-faint); }
+
+strong { font-weight: 600; color: var(--ink); }
+
+/* ---------------------------------------------------- hero */
+
+.hero {
+  min-height: 88svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 4rem 0 3rem;
+  position: relative;
+  background:
+    radial-gradient(58% 42% at 50% 34%, color-mix(in srgb, var(--accent) 11%, transparent), transparent 70%);
+}
+
+.hero-inner { display: grid; gap: 1.5rem; justify-items: center; }
+
+#ring { width: min(52vw, 190px); height: min(52vw, 190px); display: block; }
+
+.wordmark {
+  font-family: Archivo, sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.4rem, 15vw, 6.5rem);
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  margin: 0;
+}
+
+.tagline {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  color: var(--ink-soft);
+}
+
+.meaning {
+  font-size: 0.92rem;
+  color: var(--ink-faint);
+  max-width: 26rem;
+}
+
+.meaning b { color: var(--accent); font-weight: 600; }
+
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+
+.chip {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.32rem 0.72rem;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------- iz ayracı */
+
+.trace {
+  height: 10px;
+  width: 100%;
+  display: block;
+  margin: 0;
+}
+
+/* ---------------------------------------------------- bölümler */
+
+section { padding: 4.5rem 0; }
+
+.stack { display: grid; gap: 1.15rem; }
+.stack-lg { display: grid; gap: 2.4rem; }
+
+/* ---------------------------------------------------- kanıt paneli */
+
+.proof {
+  background: var(--ground-sunken);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.proof-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.3rem;
+  padding: 1rem 1.15rem;
+}
+
+.proof-row + .proof-row { border-top: 1px solid var(--rule-soft); }
+
+.proof-when {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.proof-bytes {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 0.15rem;
+}
+
+.readable { color: var(--ember); }
+.noise    { color: var(--accent); }
+.gone     { color: var(--ink-faint); font-style: italic; }
+
+/* ---------------------------------------------------- adımlar */
+
+.steps { display: grid; gap: 0; counter-reset: s; }
+
+.step {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  gap: 0.9rem;
+  padding: 1.05rem 0;
+  border-top: 1px solid var(--rule-soft);
+  align-items: start;
+}
+
+.step:last-child { border-bottom: 1px solid var(--rule-soft); }
+
+.step-n {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  padding-top: 0.22rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.step p { max-width: 30rem; }
+
+.step code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.86em;
+  color: var(--ember);
+}
+
+/* ---------------------------------------------------- diller */
+
+.langs { display: grid; gap: 0; }
+
+.lang {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.lang:last-child { border-bottom: 1px solid var(--rule-soft); }
+
+.lang-name { font-size: 1.02rem; }
+.lang-name[dir="rtl"] { font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif; }
+
+.lang-btn {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-align: end;
+  white-space: nowrap;
+}
+
+.lang-btn[dir="rtl"] { font-family: "IBM Plex Sans Arabic", monospace; }
+
+/* ---------------------------------------------------- dürüstlük paneli */
+
+.honest {
+  border-inline-start: 2px solid var(--accent);
+  padding: 0.2rem 0 0.2rem 1.35rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+/* ---------------------------------------------------- üçlü */
+
+.trio { display: grid; gap: 0.5rem; }
+
+.trio-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.95rem 1.15rem;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  font-family: Archivo, sans-serif;
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.trio-item.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #FFFFFF;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.trio-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex: none;
+}
+
+/* ---------------------------------------------------- varlıklar */
+
+.assets { display: grid; gap: 0; }
+
+.asset {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem 1.5rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--rule-soft);
+  align-items: baseline;
+}
+
+.asset:last-child { border-bottom: 1px solid var(--rule-soft); }
+
+.asset-name {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.84rem;
+  overflow-wrap: anywhere;
+}
+
+.asset-use { font-size: 0.84rem; color: var(--ink-faint); text-align: end; }
+
+/* ---------------------------------------------------- alt */
+
+footer {
+  padding: 4rem 0 5rem;
+  display: grid;
+  justify-items: center;
+  gap: 1.2rem;
+  text-align: center;
+}
+
+.stamp {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: var(--ink-faint);
+}
+
+.stamp-rule { width: 34px; height: 1px; background: currentColor; }
+
+.stamp-name {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+}
+
+.version {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@media (min-width: 46rem) {
+  .proof-row { grid-template-columns: 11rem 1fr; align-items: baseline; gap: 1.5rem; }
+  .trio { grid-template-columns: 1fr 1fr; }
+  .trio-item.primary { grid-column: 1 / -1; padding-block: 1.2rem; }
+}
+</style>
+
+<main>
+
+  <!-- ============================================ hero -->
+  <header class="hero">
+    <div class="hero-inner wrap">
+      <canvas id="ring" width="380" height="380" aria-label="Bêşop logosu: solarak kaybolan bir iz"></canvas>
+      <h1 class="wordmark">Bêşop</h1>
+      <p class="tagline">iz bırakmadan siler</p>
+      <p class="meaning">
+        Kurmancî'de <b>şop</b> iz demek, <b>bê-</b> ise -siz.
+        Adı, yaptığı işin tam karşılığı.
+      </p>
+      <div class="platforms">
+        <span class="chip">Android 8+</span>
+        <span class="chip">Windows</span>
+        <span class="chip">macOS</span>
+        <span class="chip">5 dil</span>
+      </div>
+    </div>
+  </header>
+
+  <canvas class="trace" width="1200" height="10" aria-hidden="true"></canvas>
+
+  <!-- ============================================ sorun -->
+  <section>
+    <div class="wrap stack">
+      <p class="eyebrow">Sorun</p>
+      <h2>Sildiğin dosya aslında hâlâ orada.</h2>
+      <p class="lede soft">
+        Bir dosyayı sildiğinde işletim sistemi içeriği yok etmez. Sadece
+        “burası artık boş” diye işaretler. Baytlar diskte olduğu gibi durmaya
+        devam eder — üzerlerine yeni bir şey yazılana kadar, ki bu aylar sürebilir.
+      </p>
+      <p class="soft">
+        Kurtarma yazılımları tam olarak bunu arar. Sattığın telefonda, verdiğin
+        USB bellekte, tamire bıraktığın bilgisayarda sildiğini sandığın şey
+        birkaç dakikalık bir taramayla geri gelebilir.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ kanıt -->
+  <section>
+    <div class="wrap stack">
+      <p class="eyebrow">Kanıt</p>
+      <h2>Bir test dosyasının son otuz saniyesi.</h2>
+      <p class="soft">
+        30 MB'lık bir dosyanın içine tanınabilir bir imza yazıldı, sonra Bêşop
+        çalıştırıldı. Dosyanın ilk 16 baytı işlem boyunca dışarıdan izlendi:
+      </p>
+
+      <div class="proof">
+        <div class="proof-row">
+          <span class="proof-when">Silmeden önce</span>
+          <span class="proof-bytes readable">GIZLIVERI-CYBERG</span>
+        </div>
+        <div class="proof-row">
+          <span class="proof-when">İşlem sırasında</span>
+          <span class="proof-bytes noise">9e 87 4c 14 74 8a fc f0 58 40 ae 35</span>
+        </div>
+        <div class="proof-row">
+          <span class="proof-when">Sonra</span>
+          <span class="proof-bytes gone">No such file or directory</span>
+        </div>
+      </div>
+
+      <p class="faint" style="font-size:0.88rem">
+        Okunabilir içerik önce çöpe döndü, sonra dosya kalıcı olarak silindi.
+        Kurtarma yazılımı dosyayı bulsa bile içinde bulacağı şey budur.
+      </p>
+    </div>
+  </section>
+
+  <canvas class="trace" width="1200" height="10" aria-hidden="true"></canvas>
+
+  <!-- ============================================ nasıl -->
+  <section>
+    <div class="wrap stack">
+      <p class="eyebrow">Yöntem</p>
+      <h2>Beş adım, bu sırayla.</h2>
+      <p class="soft">Sıra önemli — her adım bir öncekinin bıraktığı izi kapatır.</p>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-n">01</span>
+          <p>İçeriğin üzerine <strong>50 kez rastgele veri</strong> yazılır.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">02</span>
+          <p>Her geçişten sonra <code>fsync</code> — veri disk önbelleğinde beklemez, gerçekten diske iner.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">03</span>
+          <p>Dosya <strong>0 byte'a</strong> indirilir.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">04</span>
+          <p>Kalıcı olarak silinir. <strong>Çöp kutusuna gitmez.</strong></p>
+        </div>
+        <div class="step">
+          <span class="step-n">05</span>
+          <p>Silmenin gerçekleştiği <strong>doğrulanır</strong>. Olmadıysa uygulama bunu açıkça söyler, başardı numarası yapmaz.</p>
+        </div>
+      </div>
+
+      <p class="soft" style="margin-top:0.4rem">
+        Masaüstü sürümünde ayrıca dosya adı silmeden önce üç kez rastgeleye
+        çevrilir, böylece dizin kaydındaki eski isim de bozulur.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ arayüz -->
+  <section>
+    <div class="wrap stack">
+      <p class="eyebrow">Arayüz</p>
+      <h2>Üç düğme. Başka hiçbir şey.</h2>
+      <p class="soft">
+        Geçiş sayısı, desen seçimi, gelişmiş ayarlar sekmesi yok. Güvenlik
+        aracının anlaşılır olması gerekir; anlamadığın bir ayar seni korumaz.
+      </p>
+
+      <div class="trio">
+        <div class="trio-item"><span class="trio-dot"></span>Dosya seç</div>
+        <div class="trio-item"><span class="trio-dot"></span>Klasör seç</div>
+        <div class="trio-item primary">Yok et</div>
+      </div>
+    </div>
+  </section>
+
+  <canvas class="trace" width="1200" height="10" aria-hidden="true"></canvas>
+
+  <!-- ============================================ diller -->
+  <section>
+    <div class="wrap stack">
+      <p class="eyebrow">Diller</p>
+      <h2>Ana dili Kurmancî.</h2>
+      <p class="soft">
+        Çoğu uygulamada Kürtçe sonradan eklenen bir seçenektir. Burada
+        varsayılan dil o. Sağdan sola yazılan diller tam destekli — arayüz
+        gerçekten yön değiştirir, çevrilmiş metin değildir.
+      </p>
+
+      <div class="langs">
+        <div class="lang">
+          <span class="lang-name">Kurmancî</span>
+          <span class="lang-btn">TUNE BIKE</span>
+        </div>
+        <div class="lang">
+          <span class="lang-name" dir="rtl" lang="ckb">کوردیی ناوەندی</span>
+          <span class="lang-btn" dir="rtl" lang="ckb">لەناوی ببە</span>
+        </div>
+        <div class="lang">
+          <span class="lang-name" dir="rtl" lang="ar">العربية</span>
+          <span class="lang-btn" dir="rtl" lang="ar">أبِدْه</span>
+        </div>
+        <div class="lang">
+          <span class="lang-name">Türkçe</span>
+          <span class="lang-btn">YOK ET</span>
+        </div>
+        <div class="lang">
+          <span class="lang-name">English</span>
+          <span class="lang-btn">DESTROY</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ gizlilik -->
+  <section>
+    <div class="wrap stack">
+      <p class="eyebrow">Gizlilik</p>
+      <h2>İnternet izni yok.</h2>
+      <p class="soft">
+        Bu bir tercih değil, teknik bir sınır: uygulamanın izin listesinde
+        internet yok. Yani isteseydi bile hiçbir yere veri gönderemez.
+        Reklam yok, analitik yok, hesap yok, kayıt yok. Sadece senin
+        seçtiğin dosyalara erişir.
+      </p>
+    </div>
+  </section>
+
+  <canvas class="trace" width="1200" height="10" aria-hidden="true"></canvas>
+
+  <!-- ============================================ dürüstlük -->
+  <section>
+    <div class="wrap stack">
+      <p class="eyebrow">Dürüst sınır</p>
+      <h2>50 geçiş, 1 geçişten daha güvenli değil.</h2>
+
+      <div class="honest">
+        <p class="soft">
+          Flash bellekte — telefon hafızası, SD kart, SSD — <strong>aşınma
+          dengeleme</strong> vardır. Denetleyici yazdığın veriyi eski fiziksel
+          bloğa değil, ömrü daha az yıpranmış başka bir bloğa yazar. Eski
+          bloktaki kopya çipin içinde kalır ve yazılım oraya erişemez.
+        </p>
+        <p class="soft">
+          Yani 50 geçişin manyetik disklerden kalma bir alışkanlık olduğunu
+          biliyoruz. Bunu uygulamanın <em>içinde de</em> yazıyoruz.
+        </p>
+        <p class="soft">
+          Peki neden yapıyor? Çünkü <strong>kurtarma yazılımlarına karşı
+          çalışıyor</strong> — dosya sistemi seviyesinde içerik gerçekten yok
+          ediliyor, ve uygulamanın amacı bu. Laboratuvar düzeyinde mutlak
+          garanti isteyen bir senaryoda tek yol tam disk şifreleme ve anahtar
+          imhasıdır.
+        </p>
+      </div>
+
+      <p class="faint" style="font-size:0.88rem">
+        Ayrıca: galeri fotoğrafı silerken Google Fotoğraflar gibi uygulamaların
+        kendi çöp kutusunda ayrı bir kopya kalabilir. Onu ilgili uygulamadan
+        ayrıca temizlemek gerekir.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ varlıklar -->
+  <section>
+    <div class="wrap stack">
+      <p class="eyebrow">Basın dosyaları</p>
+      <h2>Logo ve mağaza görselleri.</h2>
+
+      <div class="assets">
+        <div class="asset">
+          <span class="asset-name">besop-icon-512.png</span>
+          <span class="asset-use">Mağaza ikonu</span>
+        </div>
+        <div class="asset">
+          <span class="asset-name">besop-icon-1024.png</span>
+          <span class="asset-use">Yüksek çözünürlük</span>
+        </div>
+        <div class="asset">
+          <span class="asset-name">besop-logo-1024-transparent.png</span>
+          <span class="asset-use">Şeffaf zemin</span>
+        </div>
+        <div class="asset">
+          <span class="asset-name">besop-logo-dark.svg · besop-logo-light.svg</span>
+          <span class="asset-use">Vektör</span>
+        </div>
+      </div>
+
+      <p class="faint" style="font-size:0.88rem">
+        Logo, kaybolan bir izdir: halka saat yönünde çizilir, giderek incelir ve
+        yok olur. Geriye ortadaki tek nokta kalır. Uygulamanın açılış
+        animasyonu da aynı hareketi yapar.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="version">Bêşop 1.3 · Android · Windows · macOS</p>
+    <div class="stamp">
+      <span class="stamp-rule"></span>
+      <span class="stamp-name">CYBERGAH</span>
+      <span class="stamp-rule"></span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var SEGMENTS = 30;
+  var GAP_FRACTION = 0.34;
+  var FADE_POWER = 1.7;
+
+  function accent() {
+    return getComputedStyle(document.body).getPropertyValue("--accent").trim() || "#FF4757";
+  }
+
+  /* Halkayı çizer. progress 0..1 — kaç segmentin göründüğü. */
+  function drawRing(canvas, progress, showDot) {
+    var dpr = window.devicePixelRatio || 1;
+    var box = canvas.getBoundingClientRect();
+    var w = box.width || canvas.width;
+    var h = box.height || canvas.height;
+    if (canvas.width !== Math.round(w * dpr)) {
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+    }
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    var cx = w / 2, cy = h / 2;
+    var r = Math.min(w, h) * 0.335;
+    var wMax = Math.min(w, h) * 0.078;
+    var wMin = Math.min(w, h) * 0.014;
+    var step = (Math.PI * 2) / SEGMENTS;
+    var gap = step * GAP_FRACTION;
+    var col = accent();
+    var shown = Math.round(SEGMENTS * progress);
+
+    ctx.lineCap = "round";
+    ctx.strokeStyle = col;
+    for (var i = 0; i < shown; i++) {
+      var t = i / (SEGMENTS - 1);
+      var alpha = Math.pow(1 - t, FADE_POWER);
+      if (alpha <= 0.02) continue;
+      ctx.globalAlpha = alpha;
+      ctx.lineWidth = wMax - (wMax - wMin) * t;
+      var a0 = -Math.PI / 2 + i * step;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, a0, a0 + step - gap);
+      ctx.stroke();
+    }
+
+    if (showDot > 0) {
+      ctx.globalAlpha = showDot;
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      ctx.arc(cx, cy, Math.min(w, h) * 0.072, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  /* Bölüm ayracı: aynı iz, yatay olarak solup gider. */
+  function drawTrace(canvas) {
+    var dpr = window.devicePixelRatio || 1;
+    var box = canvas.getBoundingClientRect();
+    var w = box.width, h = box.height;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = accent();
+
+    var n = 46;
+    var slot = w / n;
+    for (var i = 0; i < n; i++) {
+      var t = i / (n - 1);
+      var alpha = Math.pow(1 - t, 2.1) * 0.85;
+      if (alpha <= 0.015) continue;
+      ctx.globalAlpha = alpha;
+      var bw = slot * 0.42 * (1 - t * 0.55);
+      var bh = h * (1 - t * 0.5);
+      ctx.fillRect(i * slot, (h - bh) / 2, Math.max(1, bw), Math.max(1, bh));
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  var ring = document.getElementById("ring");
+  var traces = Array.prototype.slice.call(document.querySelectorAll(".trace"));
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function paintAll(progress, dot) {
+    if (ring) drawRing(ring, progress, dot);
+    traces.forEach(drawTrace);
+  }
+
+  if (reduce) {
+    paintAll(1, 1);
+  } else {
+    var start = null;
+    var DRAW_MS = 1250;
+    var DOT_DELAY = 900;
+    var DOT_MS = 450;
+
+    var tick = function (now) {
+      if (start === null) start = now;
+      var t = now - start;
+      var p = Math.min(1, t / DRAW_MS);
+      // yumuşak yavaşlama
+      p = 1 - Math.pow(1 - p, 3);
+      var d = Math.min(1, Math.max(0, (t - DOT_DELAY) / DOT_MS));
+      if (ring) drawRing(ring, p, d);
+      if (t < DRAW_MS + 200) requestAnimationFrame(tick);
+    };
+    traces.forEach(drawTrace);
+    requestAnimationFrame(tick);
+  }
+
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { paintAll(1, 1); }, 120);
+  });
+
+  // Tema değişince renkleri yeniden al
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    var onScheme = function () { setTimeout(function () { paintAll(1, 1); }, 40); };
+    if (mq.addEventListener) mq.addEventListener("change", onScheme);
+  }
+}());
+</script>

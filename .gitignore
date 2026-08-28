@@ -1,0 +1,24 @@
+# --- imza anahtarlari: ASLA depoya girmez ---
+keystore.properties
+*.jks
+*.keystore
+*.p12
+
+# --- yerel ayarlar ---
+local.properties
+
+# --- derleme ciktilari ---
+.gradle/
+build/
+captures/
+.cxx/
+.externalNativeBuild/
+dist/
+.kotlin/
+
+# --- IDE ---
+.idea/
+*.iml
+*.iws
+.DS_Store
+Thumbs.db

@@ -1,0 +1,5 @@
+kmr   rtl=false | Kurmancî | Bêşop | BI AWAYEKÎ NEVEGER JÊ BIBE
+ckb   rtl=true  | کوردیی ناوەندی | Bêşop | بە جۆرێک بیسڕەوە کە نەگەڕێتەوە
+ar    rtl=true  | العربية | Bêşop | احذف نهائيًا دون إمكانية الاسترجاع
+tr    rtl=false | Türkçe | Bêşop | GERİ GETİRİLEMEYECEK ŞEKİLDE SİL
+en    rtl=false | English | Bêşop | ERASE BEYOND RECOVERY
