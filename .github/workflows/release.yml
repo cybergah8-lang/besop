@@ -45,7 +45,9 @@ jobs:
           } > keystore.properties
 
       - name: APK derle
-        run: ./gradlew :app:assembleRelease --no-daemon
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:assembleRelease --no-daemon
 
       - name: Adlandır
         run: |
@@ -103,7 +105,9 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
 
       - name: DMG derle
-        run: ./gradlew :desktop:packageDmg --no-daemon
+        run: |
+          chmod +x gradlew
+          ./gradlew :desktop:packageDmg --no-daemon
 
       - name: Adlandır
         run: |
