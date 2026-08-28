@@ -56,12 +56,11 @@ git push origin v1.3.0
 (README/lisans **ekleme**, zaten var). Sonra:
 
 ```bash
-git remote add origin https://github.com/cybergah/besop.git
+git remote add origin https://github.com/cybergah8-lang/besop.git
 git push -u origin main
 git push origin v1.3.0
 ```
 
-> Kullanıcı adın `cybergah` değilse adresi ona göre düzelt.
 
 ---
 
@@ -78,7 +77,7 @@ Anahtarı base64'e çevir:
 base64 -w0 besop-release.jks > keystore.b64
 ```
 
-**github.com/cybergah/besop/settings/secrets/actions** → *New repository secret*
+**github.com/cybergah8-lang/besop/settings/secrets/actions** → *New repository secret*
 ile dört değer ekle:
 
 | Ad | Değer |
